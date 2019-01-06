@@ -135,17 +135,23 @@ extension MainViewController {
     private func resetInterface() {
         // Remove UI elements that aren't used everywhere
         [transferButton, addMoreButton, shareButton, newTransferButton].forEach({ (button: UIButton) in
-            mainButtonsStackView.removeArrangedSubview(button)
-            button.removeFromSuperview()
+            DispatchQueue.main.async {
+                self.mainButtonsStackView.removeArrangedSubview(button)
+                button.removeFromSuperview()
+            }
         })
         
         // Hide views not managed by a UIStackView
-        imageView.isHidden = true
-        secondImageView.isHidden = true
+        DispatchQueue.main.async {
+            self.imageView.isHidden = true
+            self.secondImageView.isHidden = true
+        }
         
         [selectButton, progressView, urlButton].forEach({ (element: UIView) in
-            contentStackView.removeArrangedSubview(element)
-            element.removeFromSuperview()
+            DispatchQueue.main.async {
+                self.contentStackView.removeArrangedSubview(element)
+                element.removeFromSuperview()
+            }
         })
     }
     
